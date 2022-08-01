@@ -54,6 +54,48 @@
               ],
               "outputHashing": "all"
             },
+            "release": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.release.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "qa": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.qa.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
             "development": {
               "buildOptimizer": false,
               "optimization": false,
@@ -70,6 +112,14 @@
           "configurations": {
             "production": {
               "browserTarget": "Pokedex_App:build:production"
+            },
+            "release": {
+              "browserTarget": "Pokedex_App:build:release",
+              "proxyConfig": ""
+            },
+            "qa": {
+              "browserTarget": "Pokedex_App:build:qa",
+              "proxyConfig": ""
             },
             "development": {
               "browserTarget": "Pokedex_App:build:development"
