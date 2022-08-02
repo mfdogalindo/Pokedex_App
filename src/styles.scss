@@ -2,3 +2,43 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=DotGothic16&family=VT323&display=swap');
+
+:root {
+  --primary: #bc1021;
+  --primary-text: #fff;
+  --header-reservation: 64px;
+  --footer-reservation: 48px;
+  --component-reservation: calc(
+    100vh - var(--header-reservation) - var(--footer-reservation)
+  );
+  --controls-reservation: 300px; 
+  --screen-reservation: calc(var(--component-reservation) - var(--controls-reservation) - 64px);
+}
+
+body {
+  background-color: var(--primary);
+  color: var(--primary-text);
+}
+
+article {
+  min-height: var(--component-reservation);
+}
+
+header {
+  height: var(--header-reservation);
+}
+
+footer {
+  height: var(--footer-reservation);
+}
+
+.container {
+  min-height: var(--component-reservation);
+  width: 100vw;
+}
+
+.all-center {
+  @apply flex justify-center items-center
+}

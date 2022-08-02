@@ -1,0 +1,10 @@
+<section *ngIf="this.data.results" class="screen-font">
+   <div  *ngFor="let item of this.data.results">
+      <div>
+         <p class="text-4xl capitalize" (click)="onClickItem(item)">{{item.name}}</p>
+      </div>
+
+   </div>
+
+</section>
+
