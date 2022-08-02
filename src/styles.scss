@@ -42,3 +42,8 @@ footer {
 .all-center {
   @apply flex justify-center items-center
 }
+
+.clickable {
+  cursor: pointer;
+  user-select: none;
+}

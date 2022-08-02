@@ -7,3 +7,8 @@ export const selectPokedexItems = createSelector(
    selectPokedex,
    (state: PokedexState) => state.data
 )
+
+export const selectPokedexState = createSelector(
+   selectPokedex,
+   (state: PokedexState) => state
+)

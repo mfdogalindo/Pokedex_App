@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { TPage } from 'src/app/core/models/page.model';
 import { environment } from 'src/environments/environment';
 import { TPageCommand } from '../models/page.command';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
+import { PokeApiPage } from '../models/pokeApiPage.model';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +12,7 @@ export class ApiService {
   constructor(private http: HttpClient) {}
 
   getPage(cmd: TPageCommand) {
-    return this.http.get<TPage>(
+    return this.http.get<PokeApiPage>(
       `${this.endpoint}/api/pokemon?limit=${cmd.limit}&offset=${cmd.offset}`
     );
   }

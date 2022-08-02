@@ -1,13 +1,16 @@
-<section *ngIf="this.data.results.length > 0" class="screen-font h-full relative">
+<section
+  *ngIf="this.pokedexState.total > 0"
+  class="screen-font h-full relative"
+>
   <div
     class="bg-black h-10 rounded-t-md text-white all-center uppercase text-2xl xl:text-4xl"
   >
     POKEDEX - {{ currentTime | date: "d MMMM yyyy h:mm a" }}
   </div>
-  <div class="px-6 text-3xl xl:text-4xl capitalize pb-10">
-   <div  *ngFor="let item of this.renderData">
-      <div>
-        <p class="" (click)="onClickItem(item)">
+  <div class="all-center">
+    <div class="px-6 text-3xl xl:text-4xl capitalize pb-10">
+      <div *ngFor="let item of this.pokedexState.data.results">
+        <p class="clickable" (click)="onClickItem(item)">
           {{ item.name }}
         </p>
       </div>
@@ -15,14 +18,28 @@
   </div>
 
   <div
-    class="absolute bottom-10  h-10 rounded-b-md w-full text-2xl text-right pr-2"
+    class="absolute bottom-10 h-10 rounded-b-md w-full text-2xl text-right pr-2"
   >
-    {{this.currentPage.size + this.currentPage.offset}}/{{ this.data.count }}
+    {{ this.pokedexState.offset + this.pokedexState.limit }}/{{
+      this.pokedexState.total
+    }}
   </div>
   <div
     class="absolute bottom-0 bg-black h-10 rounded-b-md text-white w-full grid grid-cols-2 text-2xl xl:text-4xl"
   >
-    <div class="all-center">Prev</div>
-    <div class="all-center">Next</div>
+    <div
+      class="all-center clickable"
+      (click)="onClickPrev()"
+      [class.disable-element]="pokedexState.prev == null"
+    >
+      Prev
+    </div>
+    <div
+      class="all-center clickable"
+      (click)="onClickNext()"
+      [class.disable-element]="pokedexState.next == null"
+    >
+      Next
+    </div>
   </div>
 </section>

@@ -1,9 +1,13 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { map, share, Subscriber, Subscription, timer } from 'rxjs';
-import { ApiService } from 'src/app/core/services/api.service';
-import { getPokedexPage, selectPokedexItems } from 'src/app/core/store/pokedex';
-import { TPage } from '../../../models/page.model';
+import {
+  getPokedexPage,
+  initialState,
+  PokedexState,
+  selectPokedexItems,
+  selectPokedexState,
+} from 'src/app/core/store/pokedex';
 
 @Component({
   selector: 'mol-screen',
@@ -13,27 +17,14 @@ import { TPage } from '../../../models/page.model';
 export class ScreenComponent implements OnInit, OnDestroy {
   constructor(private store: Store) {}
 
-  data: TPage = {
-    count: 0,
-    next: null,
-    previous: null,
-    results: [{ name: '', url: '' }],
-  };
-
-  renderData: any = [];
+  pokedexState: PokedexState = initialState;
 
   timerSubscription!: Subscription;
   currentTime = new Date();
-  currentPage: { size: number; offset: number; total: number } = {
-    size: 10,
-    offset: 0,
-    total: 0,
-  };
   pokedexPageSubscription!: Subscription;
 
   ngOnInit(): void {
     this.pokedexPageSubscription = this.setPokedexPageSub();
-    this.getPokedexPage(this.currentPage.size, this.currentPage.offset);
     this.setTimer();
   }
 
@@ -43,9 +34,8 @@ export class ScreenComponent implements OnInit, OnDestroy {
   }
 
   private setPokedexPageSub(): Subscription {
-    return this.store.select(selectPokedexItems).subscribe((data) => {
-      this.data = data;
-      this.renderData = this.data.results;
+    return this.store.select(selectPokedexState).subscribe((data) => {
+      this.pokedexState = data;
     });
   }
 
@@ -60,11 +50,29 @@ export class ScreenComponent implements OnInit, OnDestroy {
       });
   }
 
-  async getPokedexPage(limit: number, offset: number) {
-    this.store.dispatch(getPokedexPage({ limit, offset }));
-  }
-
   public onClickItem(event: any) {
     console.log(event);
+  }
+
+  public onClickNext() {
+    if (this.pokedexState.next != null) {
+      this.store.dispatch(
+        getPokedexPage({
+          limit: this.pokedexState.limit,
+          offset: this.pokedexState.limit + this.pokedexState.offset,
+        })
+      );
+    }
+  }
+
+  public onClickPrev() {
+    if (this.pokedexState.prev != null) {
+      this.store.dispatch(
+        getPokedexPage({
+          limit: this.pokedexState.limit,
+          offset: this.pokedexState.offset - this.pokedexState.limit,
+        })
+      );
+    }
   }
 }

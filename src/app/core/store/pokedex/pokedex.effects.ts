@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, Effect, ofType } from '@ngrx/effects';
 import { catchError, map, of, switchMap } from 'rxjs';
-import { TPage } from '../../models/page.model';
 import { ApiService } from '../../services/api.service';
 import * as PokedexActions from './pokedex.actions';
 
