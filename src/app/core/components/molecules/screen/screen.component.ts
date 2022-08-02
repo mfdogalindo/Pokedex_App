@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { map, share, Subscription, timer } from 'rxjs';
+import { map, share, Subscriber, Subscription, timer } from 'rxjs';
 import { ApiService } from 'src/app/core/services/api.service';
-import { getPokedexPage } from 'src/app/core/store/pokedex';
+import { getPokedexPage, selectPokedexItems } from 'src/app/core/store/pokedex';
 import { TPage } from '../../../models/page.model';
 
 @Component({
@@ -20,7 +20,7 @@ export class ScreenComponent implements OnInit, OnDestroy {
     results: [{ name: '', url: '' }],
   };
 
-  renderData: any = [] 
+  renderData: any = [];
 
   timerSubscription!: Subscription;
   currentTime = new Date();
@@ -29,15 +29,24 @@ export class ScreenComponent implements OnInit, OnDestroy {
     offset: 0,
     total: 0,
   };
+  pokedexPageSubscription!: Subscription;
 
   ngOnInit(): void {
-    this.store.dispatch(getPokedexPage({ limit: 10, offset: 0 }));
-    //this.refreshPage(this.currentPage.size, this.currentPage.offset);
+    this.pokedexPageSubscription = this.setPokedexPageSub();
+    this.getPokedexPage(this.currentPage.size, this.currentPage.offset);
     this.setTimer();
   }
 
   ngOnDestroy(): void {
+    this.pokedexPageSubscription.unsubscribe();
     this.timerSubscription.unsubscribe();
+  }
+
+  private setPokedexPageSub(): Subscription {
+    return this.store.select(selectPokedexItems).subscribe((data) => {
+      this.data = data;
+      this.renderData = this.data.results;
+    });
   }
 
   private setTimer() {
@@ -51,11 +60,8 @@ export class ScreenComponent implements OnInit, OnDestroy {
       });
   }
 
-  async refreshPage(limit: number, offset: number) {
-    //this.data = await this.apiService.getPage({ limit, offset });
-    this.currentPage.total = this.data.count;
-    this.renderData = this.data.results;
-    console.log(this.data);
+  async getPokedexPage(limit: number, offset: number) {
+    this.store.dispatch(getPokedexPage({ limit, offset }));
   }
 
   public onClickItem(event: any) {
