@@ -1,19 +1,19 @@
 import { Injectable } from '@angular/core';
-import { TPage } from 'src/app/shared/models/page';
+import { TPage } from 'src/app/core/models/page.model';
 import { environment } from 'src/environments/environment';
+import { TPageCommand } from '../models/page.command';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ApiService {
   private endpoint = environment.api;
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
-  async getPage(limit: number, offset: number): Promise<TPage> {
-    return fetch(`${this.endpoint}/api/pokemon?limit=${limit}&offset=${offset}`)
-      .then((response) => response.json())
-      .catch((error) => {
-        alert(error);
-      });
+  getPage(cmd: TPageCommand) {
+    return this.http.get<TPage>(
+      `${this.endpoint}/api/pokemon?limit=${cmd.limit}&offset=${cmd.offset}`
+    );
   }
 }

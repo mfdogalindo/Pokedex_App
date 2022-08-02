@@ -13,7 +13,7 @@
   --component-reservation: calc(
     100vh - var(--header-reservation) - var(--footer-reservation)
   );
-  --controls-reservation: 300px; 
+  --controls-reservation: 100px; 
   --screen-reservation: calc(var(--component-reservation) - var(--controls-reservation) - 64px);
 }
 
