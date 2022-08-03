@@ -21,6 +21,7 @@ import { ScreenHeaderComponent } from './components/atoms/screen-header/screen-h
 import { ScreenListPokemonsComponent } from './components/atoms/screen-list-pokemons/screen-list-pokemons.component';
 import { ScreenPokemonComponent } from './components/molecules/screen-pokemon/screen-pokemon.component';
 import { JwtInterceptorService } from './services/jwt-interceptor.service';
+import { ScreenPokemonSkillsComponent } from './components/atoms/screen-pokemon-skills/screen-pokemon-skills.component';
 
 @NgModule({
   imports: [
@@ -44,6 +45,7 @@ import { JwtInterceptorService } from './services/jwt-interceptor.service';
     ScreenHeaderComponent,
     ScreenListPokemonsComponent,
     ScreenPokemonComponent,
+    ScreenPokemonSkillsComponent,
   ],
   exports: [HeaderComponent, FooterComponent, ListFrameComponent],
   providers: [

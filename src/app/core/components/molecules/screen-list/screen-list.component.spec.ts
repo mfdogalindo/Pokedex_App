@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ScreenComponent } from './screen.component';
+import { ScreenComponent } from './screen-list.component';
 
 describe('ScreenComponent', () => {
   let component: ScreenComponent;

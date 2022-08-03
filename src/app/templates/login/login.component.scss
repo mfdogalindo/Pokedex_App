@@ -5,3 +5,12 @@
 .login-button-disabled {
   @apply w-full py-3 font-medium text-white bg-gray-500 rounded-lg border-red-500 hover:shadow inline-flex space-x-2 items-center justify-center;
 }
+
+.login-form-input {
+  @apply text-black w-full py-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow;
+}
+
+.login-logo {
+   @apply bg-contain bg-no-repeat bg-center h-16 mt-2;
+   background-image: url("/assets/pokedex-logo.png");
+ }

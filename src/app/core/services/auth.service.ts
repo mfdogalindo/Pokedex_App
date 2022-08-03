@@ -39,6 +39,10 @@ export class AuthService {
     }
   }
 
+  logout() {
+    sessionStorage.removeItem('control-session');
+  }
+
   getToken(): { accessToken: string; expiresIn: number } | null {
     try {
       const data: any = sessionStorage.getItem('control-session');
