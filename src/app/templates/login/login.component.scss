@@ -1,0 +1,7 @@
+.login-button {
+  @apply w-full py-3 font-medium text-white bg-black hover:bg-red-500 rounded-lg border-red-500 hover:shadow inline-flex space-x-2 items-center justify-center;
+}
+
+.login-button-disabled {
+  @apply w-full py-3 font-medium text-white bg-gray-500 rounded-lg border-red-500 hover:shadow inline-flex space-x-2 items-center justify-center;
+}

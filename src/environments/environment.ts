@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  api: 'http://192.168.3.37:3000',
+  api: 'https://pokedex-serv.herokuapp.com',
+  auth: 'https://pokedex-auth.herokuapp.com',
 };
 
 /*

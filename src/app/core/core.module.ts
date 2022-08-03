@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { ScreenComponent } from './components/molecules/screen-list/screen-list.component';
 import { FooterComponent } from './components/organisms/footer/footer.component';
@@ -20,6 +20,7 @@ import { ScreenBtnComponent } from './components/atoms/screen-btn/screen-btn.com
 import { ScreenHeaderComponent } from './components/atoms/screen-header/screen-header.component';
 import { ScreenListPokemonsComponent } from './components/atoms/screen-list-pokemons/screen-list-pokemons.component';
 import { ScreenPokemonComponent } from './components/molecules/screen-pokemon/screen-pokemon.component';
+import { JwtInterceptorService } from './services/jwt-interceptor.service';
 
 @NgModule({
   imports: [
@@ -45,6 +46,13 @@ import { ScreenPokemonComponent } from './components/molecules/screen-pokemon/sc
     ScreenPokemonComponent,
   ],
   exports: [HeaderComponent, FooterComponent, ListFrameComponent],
-  providers: [ApiService],
+  providers: [
+    ApiService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptorService,
+      multi: true,
+    },
+  ],
 })
 export class SharedModule {}
