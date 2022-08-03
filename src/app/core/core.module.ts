@@ -3,10 +3,10 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
-import { ScreenComponent } from './components/molecules/screen/screen.component';
+import { ScreenComponent } from './components/molecules/screen-list/screen-list.component';
 import { FooterComponent } from './components/organisms/footer/footer.component';
 import { HeaderComponent } from './components/organisms/header/header.component';
-import { ListFrameComponent } from './components/organisms/list-frame/list-frame.component';
+import { ListFrameComponent } from './components/organisms/screen-frame/screen-frame.component';
 import { ApiService } from './services/api.service';
 
 import { StoreModule } from '@ngrx/store';
@@ -16,6 +16,10 @@ import { EffectsModule } from '@ngrx/effects';
 import { reducers, metaReducers } from './store/core.reducers';
 import { PokedexEffects } from './store/pokedex/pokedex.effects';
 import { environment } from 'src/environments/environment';
+import { ScreenBtnComponent } from './components/atoms/screen-btn/screen-btn.component';
+import { ScreenHeaderComponent } from './components/atoms/screen-header/screen-header.component';
+import { ScreenListPokemonsComponent } from './components/atoms/screen-list-pokemons/screen-list-pokemons.component';
+import { ScreenPokemonComponent } from './components/molecules/screen-pokemon/screen-pokemon.component';
 
 @NgModule({
   imports: [
@@ -35,6 +39,10 @@ import { environment } from 'src/environments/environment';
     FooterComponent,
     ListFrameComponent,
     ScreenComponent,
+    ScreenBtnComponent,
+    ScreenHeaderComponent,
+    ScreenListPokemonsComponent,
+    ScreenPokemonComponent,
   ],
   exports: [HeaderComponent, FooterComponent, ListFrameComponent],
   providers: [ApiService],

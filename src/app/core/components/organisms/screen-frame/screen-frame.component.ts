@@ -1,36 +1,33 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { map, share, Subscriber, Subscription, timer } from 'rxjs';
+import { Subscription } from 'rxjs';
+import { PokemonListItem } from 'src/app/core/models';
 import {
   getPokedexPage,
+  getPokemon,
   initialState,
   PokedexState,
-  selectPokedexItems,
+  removePokemon,
   selectPokedexState,
 } from 'src/app/core/store/pokedex';
 
 @Component({
-  selector: 'mol-screen',
-  templateUrl: './screen.component.html',
-  styleUrls: ['./screen.component.scss'],
+  selector: 'org-list-frame',
+  templateUrl: './screen-frame.component.html',
+  styleUrls: ['./screen-frame.component.scss'],
 })
-export class ScreenComponent implements OnInit, OnDestroy {
-  constructor(private store: Store) {}
-
+export class ListFrameComponent implements OnInit, OnDestroy {
   pokedexState: PokedexState = initialState;
-
-  timerSubscription!: Subscription;
-  currentTime = new Date();
   pokedexPageSubscription!: Subscription;
+
+  constructor(private store: Store) {}
 
   ngOnInit(): void {
     this.pokedexPageSubscription = this.setPokedexPageSub();
-    this.setTimer();
   }
 
   ngOnDestroy(): void {
     this.pokedexPageSubscription.unsubscribe();
-    this.timerSubscription.unsubscribe();
   }
 
   private setPokedexPageSub(): Subscription {
@@ -39,22 +36,12 @@ export class ScreenComponent implements OnInit, OnDestroy {
     });
   }
 
-  private setTimer() {
-    this.timerSubscription = timer(0, 1000)
-      .pipe(
-        map(() => new Date()),
-        share()
-      )
-      .subscribe((time) => {
-        this.currentTime = time;
-      });
+  onSelectItem(item: PokemonListItem) {
+    let idSelected = parseInt(item.url.replace(`https://pokeapi.co/api/v2/pokemon/`, '').replace(`/`, ''));
+    this.store.dispatch(getPokemon({ id: idSelected }));
   }
 
-  public onClickItem(event: any) {
-    console.log(event);
-  }
-
-  public onClickNext() {
+  onNextPage() {
     if (this.pokedexState.next != null) {
       this.store.dispatch(
         getPokedexPage({
@@ -65,7 +52,7 @@ export class ScreenComponent implements OnInit, OnDestroy {
     }
   }
 
-  public onClickPrev() {
+  onPrevPage() {
     if (this.pokedexState.prev != null) {
       this.store.dispatch(
         getPokedexPage({
@@ -74,5 +61,9 @@ export class ScreenComponent implements OnInit, OnDestroy {
         })
       );
     }
+  }
+
+  backToList(){
+    this.store.dispatch(removePokemon());
   }
 }

@@ -1,0 +1,18 @@
+<section class="screen">
+   <at-screen-header [title]="pokemon.name"></at-screen-header>
+   <div class="grid grid-cols-3 w-full">
+      <div><img  class="w-full" [src]="pokemon.sprites?.front_default"></div>
+      <div class="col-span-2">general</div>
+      <div class="col-span-3">
+         details
+      </div>
+   </div>
+   <div class="screen-footer">
+      <at-screen-btn
+        (click)="onClickBack.emit()"
+      >
+        < Back
+      </at-screen-btn>
+  
+    </div>
+</section>

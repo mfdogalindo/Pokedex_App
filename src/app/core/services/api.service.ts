@@ -16,4 +16,8 @@ export class ApiService {
       `${this.endpoint}/api/pokemon?limit=${cmd.limit}&offset=${cmd.offset}`
     );
   }
+
+  getPokemon(cmd: {id: number}) {
+    return this.http.get<any>(`${this.endpoint}/api/pokemon/${cmd.id}`);
+  }
 }

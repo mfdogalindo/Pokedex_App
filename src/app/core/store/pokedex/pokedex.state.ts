@@ -1,7 +1,12 @@
-import { PokeApiPage, PokeApiPageInitialValue } from '../../models/pokeApiPage.model';
+import { Pokemon } from '../../models';
+import {
+  PokeApiPage,
+  PokeApiPageInitialValue,
+} from '../../models/pokeApiPage.model';
 
 export interface PokedexState {
-  data: PokeApiPage;
+  page: PokeApiPage;
+  selectedPokemon: Pokemon;
   loading: boolean;
   loaded: boolean;
   error: any;
@@ -13,7 +18,8 @@ export interface PokedexState {
 }
 
 export const initialState: PokedexState = {
-  data: PokeApiPageInitialValue,
+  page: PokeApiPageInitialValue,
+  selectedPokemon: { id: 0 },
   loading: false,
   loaded: false,
   error: null,

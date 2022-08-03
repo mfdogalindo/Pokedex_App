@@ -1,0 +1,31 @@
+<section
+  *ngIf="this.pokedexState.total > 0"
+  class="screen"
+>
+  <at-screen-header></at-screen-header>
+  <at-screen-list-pokemons
+    [pokemons]="this.pokedexState.page.results"
+    (onClickItem)="onClickItem.emit($event)"
+  ></at-screen-list-pokemons>
+
+  <div class="screen-counter">
+    {{ this.pokedexState.offset + this.pokedexState.limit }}/{{
+      this.pokedexState.total
+    }}
+  </div>
+  <div class="screen-footer">
+    <at-screen-btn
+      [disabled]="pokedexState.prev == null"
+      (click)="onClickPrevPage.emit()"
+    >
+      < Prev
+    </at-screen-btn>
+
+    <at-screen-btn
+      [disabled]="pokedexState.next == null"
+      (click)="onClickNextPage.emit()"
+    >
+      Next >
+    </at-screen-btn>
+  </div>
+</section>

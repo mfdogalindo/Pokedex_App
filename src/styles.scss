@@ -51,3 +51,12 @@ footer {
 .screen-font {
   font-family: "VT323", monospace;
 }
+
+.screen {
+  @apply h-full relative;
+  font-family: "VT323", monospace;
+}
+
+.screen-footer {
+  @apply absolute bottom-0 bg-black h-10 rounded-b-md text-white w-full grid grid-cols-2;
+}

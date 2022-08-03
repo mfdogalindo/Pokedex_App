@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ListFrameComponent } from './list-frame.component';
+import { ScreenBtnComponent } from './screen-btn.component';
 
-describe('ListFrameComponent', () => {
-  let component: ListFrameComponent;
-  let fixture: ComponentFixture<ListFrameComponent>;
+describe('ScreenBtnComponent', () => {
+  let component: ScreenBtnComponent;
+  let fixture: ComponentFixture<ScreenBtnComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ListFrameComponent ]
+      declarations: [ ScreenBtnComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ListFrameComponent);
+    fixture = TestBed.createComponent(ScreenBtnComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

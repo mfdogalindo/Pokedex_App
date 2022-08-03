@@ -1,0 +1,12 @@
+<div class="all-center pb-20 h-full">
+  <div class=" text-3xl xl:text-4xl capitalize">
+    <div *ngFor="let item of pokemons">
+      <p
+        class="clickable px-2 hover:bg-violet-600 active:text-white active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300"
+        (click)="onClickItem.emit(item)"
+      >
+        {{ item.name }}
+      </p>
+    </div>
+  </div>
+</div>

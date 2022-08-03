@@ -21,4 +21,16 @@ export class PokedexEffects {
       )
     )
   );
+
+  fetchPokemon$ = createEffect(() =>
+    this.action$.pipe(
+      ofType(PokedexActions.getPokemon.type),
+      switchMap((action) =>
+        this.apiService.getPokemon(action).pipe(
+          map((response) => PokedexActions.getPokemonSuccess(response)),
+          catchError((error) => of(PokedexActions.getPokemonError({ error })))
+        )
+      )
+    )
+  );
 }

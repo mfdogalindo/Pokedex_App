@@ -1,4 +1,5 @@
 import { Action, createReducer, on } from '@ngrx/store';
+import { Pokemon } from '../../models';
 import { TPageCommand } from '../../models/page.command';
 import { PokeApiPage } from '../../models/pokeApiPage.model';
 import * as PokedexActions from './pokedex.actions';
@@ -17,7 +18,7 @@ const pokedexReducer = createReducer(
     loading: false,
     loaded: true,
     total: action.count,
-    data: action,
+    page: action,
     prev: action.previous,
     next: action.next,
   })),
@@ -31,7 +32,28 @@ const pokedexReducer = createReducer(
     error: err.error,
     prev: null,
     next: null,
-  }))
+  })),
+  on(PokedexActions.getPokemon, (state, action: { id: number }) => ({
+    ...state,
+    loading: true
+  })),
+  on(PokedexActions.getPokemonSuccess, (state, action: Pokemon) => ({
+    ...state,
+    loading: false,
+    loaded: true,
+    selectedPokemon: action,
+  })),
+  on(PokedexActions.getPokemonError, (state, err: { error: any }) => ({
+    ...state,
+    loading: false,
+    loaded: false,
+    selectedPokemon: { id: 0 },
+    error: err.error,
+  })),
+  on(PokedexActions.removePokemon, (state) => ({
+    ...state,
+    selectedPokemon: { id: 0 },
+  })),
 );
 
 export function reducer(state: PokedexState | undefined, action: Action) {
