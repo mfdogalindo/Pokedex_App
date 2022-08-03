@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  api: 'https://pokedex-serv.herokuapp.com',
+  auth: 'https://pokedex-auth.herokuapp.com',
 };
 
 /*

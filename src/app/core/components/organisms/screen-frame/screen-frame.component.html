@@ -1,0 +1,24 @@
+<section class="all-center px-4">
+  <div class="container all-center px-4 md:px-8 bg-black rounded-3xl">
+    <div class="py-2 md:py-4 w-full">
+      <div
+        class="dex-screen h-full  md:mt-0 bg-white rounded-2xl border-solid border-gray-400 border-8 text-black"
+      >
+        <mol-screen-list
+          *ngIf="pokedexState.loaded && pokedexState.selectedPokemon.id === 0"
+          [pokedexState]="pokedexState"
+          (onClickNextPage)="onNextPage()"
+          (onClickPrevPage)="onPrevPage()"
+          (onClickItem)="onSelectItem($event)"
+        ></mol-screen-list>
+        <mol-screen-pokemon
+          *ngIf="pokedexState.loaded && pokedexState.selectedPokemon.id !== 0"
+          [pokemon]="pokedexState.selectedPokemon"
+          (onClickBack)="backToList()"
+        >
+        </mol-screen-pokemon>
+      </div>
+      <!-- <div class="dex-controls md: px-4">Controls</div> -->
+    </div>
+  </div>
+</section>
