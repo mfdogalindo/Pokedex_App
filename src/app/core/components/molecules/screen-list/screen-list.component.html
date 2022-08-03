@@ -1,8 +1,5 @@
-<section
-  *ngIf="this.pokedexState.total > 0"
-  class="screen"
->
-  <at-screen-header></at-screen-header>
+<section *ngIf="this.pokedexState.total > 0" class="screen all-center">
+  <at-screen-header class="screen-header"></at-screen-header>
   <at-screen-list-pokemons
     [pokemons]="this.pokedexState.page.results"
     (onClickItem)="onClickItem.emit($event)"

@@ -1,18 +1,22 @@
 <section class="screen">
-   <at-screen-header [title]="pokemon.name"></at-screen-header>
-   <div class="grid grid-cols-3 w-full">
-      <div><img  class="w-full" [src]="pokemon.sprites?.front_default"></div>
-      <div class="col-span-2">general</div>
-      <div class="col-span-3">
-         details
-      </div>
-   </div>
-   <div class="screen-footer">
-      <at-screen-btn
-        (click)="onClickBack.emit()"
-      >
-        < Back
-      </at-screen-btn>
-  
+  <at-screen-header [title]="pokemon.name"></at-screen-header>
+  <div class="grid grid-cols-3 w-full text-2xl md:text-4xl">
+    <div
+      class="m-4 border-4 border-gray-200 rounded-lg"
+      (click)="changeSprite()"
+    >
+      <img class="w-96" [src]="pokemonSprite.index[pokemonSprite.current]" />
     </div>
+    <div class="flex items-center col-span-2">
+      <div>
+        <p>Height: {{ pokemon.height }} cm</p>
+        <p>Weight: {{ pokemon.weight }} kg</p>
+        <p>Experience: {{ pokemon.base_experience }}</p>
+      </div>
+    </div>
+    <div class="col-span-3">details</div>
+  </div>
+  <div class="screen-footer">
+    <at-screen-btn (click)="onClickBack.emit()"> < Back </at-screen-btn>
+  </div>
 </section>

@@ -13,7 +13,7 @@
   --component-reservation: calc(
     100vh - var(--header-reservation) - var(--footer-reservation)
   );
-  --controls-reservation: 100px; 
+  --controls-reservation: 0px; 
   --screen-reservation: calc(var(--component-reservation) - var(--controls-reservation) - 64px);
 }
 
@@ -53,6 +53,7 @@ footer {
 }
 
 .screen {
+  min-height: var(--screen-reservation);
   @apply h-full relative;
   font-family: "VT323", monospace;
 }

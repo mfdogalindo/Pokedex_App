@@ -1,8 +1,8 @@
 <section class="all-center px-4">
-  <div class="container all-center px-8 bg-black rounded-3xl">
-    <div class="grid py-4 grid-cols-1 md:grid-cols-2 xl:grid-cols-3 w-full">
+  <div class="container all-center px-4 md:px-8 bg-black rounded-3xl">
+    <div class="py-2 md:py-4 w-full">
       <div
-        class="xl:col-span-2 dex-screen mt-6 md:mt-0 bg-white rounded-2xl border-solid border-gray-400 border-8 text-black"
+        class="dex-screen h-full  md:mt-0 bg-white rounded-2xl border-solid border-gray-400 border-8 text-black"
       >
         <mol-screen-list
           *ngIf="pokedexState.loaded && pokedexState.selectedPokemon.id === 0"
@@ -18,7 +18,7 @@
         >
         </mol-screen-pokemon>
       </div>
-      <div class="dex-controls md: px-4">Controls</div>
+      <!-- <div class="dex-controls md: px-4">Controls</div> -->
     </div>
   </div>
 </section>
