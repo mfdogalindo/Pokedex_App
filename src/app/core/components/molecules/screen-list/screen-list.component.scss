@@ -1,0 +1,6 @@
+.screen-header {
+  @apply absolute top-0 w-full;
+}
+.screen-counter {
+  @apply absolute bottom-10 h-10 rounded-b-md w-full text-2xl text-right pr-2;
+}
